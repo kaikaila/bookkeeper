@@ -1,8 +1,8 @@
-const IncomeSchema = require("../models/IncomeModel");
+const ExpenseSchema = require("../models/ExpenseModel");
 
-exports.addIncome = async (req, res) => {
+exports.addExpense = async (req, res) => {
   const { title, amount, category, description, date } = req.body;
-  const income = IncomeSchema({
+  const expense = ExpenseSchema({
     title,
     amount,
     category,
@@ -20,33 +20,33 @@ exports.addIncome = async (req, res) => {
         .status(400)
         .json({ message: "The amount must be a positive number" });
     }
-    await income.save();
-    res.status(200).json({ message: "Income Added" });
+    await expense.save();
+    res.status(200).json({ message: "Expense Added" });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
   }
-  console.log(income);
+  console.log(expense);
   // 最开始只有下面这行，当postman发出post请求时，terminal会显示该request.body
   //console.log(req.body);
 };
 
-exports.getIncomes = async (req, res) => {
+exports.getExpenses = async (req, res) => {
   try {
     // .sort({ createdAt: -1 })是要求按照createAt时间倒序排列，也就是最晚最新添加者排最前
-    const incomes = await IncomeSchema.find().sort({ createdAt: -1 });
-    res.status(200).json(incomes);
+    const expenses = await ExpenseSchema.find().sort({ createdAt: -1 });
+    res.status(200).json(expenses);
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
   }
 };
 
-exports.deleteIncome = async (req, res) => {
+exports.deleteExpense = async (req, res) => {
   const { id } = req.params;
   // console.log(id);
-  IncomeSchema.findByIdAndDelete(id).then((income) => {
+  ExpenseSchema.findByIdAndDelete(id).then((expense) => {
     res
       .status(200)
-      .json({ message: "Income Deleted" })
+      .json({ message: "Expense Deleted" })
       .catch((err) => {
         res.status(500).json({ message: "Server Error" });
       });
