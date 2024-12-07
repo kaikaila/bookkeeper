@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from "react";
 import styled from "styled-components";
-import bg from "./img/background.jpg";
+
 import { MainLayout } from "./styles/layouts";
 import Orb from "./components/button/Orb/Orb";
 import Navigation from "./components/Navigation/Navigation";
-import { dashboard } from "./utils/icons";
+import Incomes from "./components/Incomes/Incomes";
+import Expenses from "./components/Expenses/Expenses";
+import bg from "./img/background.jpg";
 
 function App() {
   // useMemo 以避免每次切换tab导致Orb重启
@@ -18,6 +20,10 @@ function App() {
     switch (active) {
       case 1:
         return <Dashboard />;
+      case 2:
+        return <Expenses />;
+      case 3:
+        return <Incomes />;
     }
   };
 
