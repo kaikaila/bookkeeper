@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 import bg from "./img/background.jpg";
 import { MainLayout } from "./styles/layouts";
@@ -6,6 +6,8 @@ import Orb from "./components/button/Orb/Orb";
 import Navigation from "./components/Navigation/Navigation";
 
 function App() {
+  // useMemo 以避免每次切换tab导致Orb重启
+
   //1 is the default selected item in dashboard
   const [active, setActive] = useState(1);
 

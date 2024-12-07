@@ -88,9 +88,9 @@ const NavStyled = styled.nav`
       font-weight: 500;
       cursor: pointer;
       transition: all 0.4s ease-in-out;
-      color: rgba(34, 34, 96, 0.6);
+      color: var(--primary-color2);
       padding-left: 1rem;
-      // position: relative;
+      position: relative;
       // target the icon inside the menu-items
       i {
         color: var(--primary-color2);
@@ -106,9 +106,10 @@ const NavStyled = styled.nav`
   }
 
   .active {
-    color: var(--primary-color);
+    //	如果没有！important强行提高优先级Specificity，那么.menu-items li: 权重 0, 1, 1; .active: 权重 0, 1, 0，由于 .menu-items li 的权重更高，它的颜色规则会覆盖 .active。
+    color: var(--primary-color) !important;
     i {
-      color: var(--primary-color);
+      color: var(--primary-color) !important;
     }
     &::before {
       content: "";
