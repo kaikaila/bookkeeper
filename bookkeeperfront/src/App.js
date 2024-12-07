@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { MainLayout } from "./styles/layouts";
 import Orb from "./components/button/Orb/Orb";
 import Navigation from "./components/Navigation/Navigation";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Incomes from "./components/Incomes/Incomes";
 import Expenses from "./components/Expenses/Expenses";
 import bg from "./img/background.jpg";
@@ -21,9 +22,13 @@ function App() {
       case 1:
         return <Dashboard />;
       case 2:
-        return <Expenses />;
+        return <Dashboard />;
       case 3:
+        return <Expenses />;
+      case 4:
         return <Incomes />;
+      default:
+        return <Dashboard />;
     }
   };
 
@@ -35,7 +40,7 @@ function App() {
       {orbMemo}
       <MainLayout>
         <Navigation active={active} setActive={setActive} />
-        <main>{displayData}</main>
+        <main>{displayData()}</main>
       </MainLayout>
     </AppStyled>
   );
@@ -47,6 +52,7 @@ const AppStyled = styled.div`
   // 下文这样定义的bg 图片的方式不能把图片置底
   // background-image:url(bg)
   background-image: url(${(props) => props.bg});
+  background-size: 100% 100%;
   position: relative;
   main {
     // 填满剩余空间

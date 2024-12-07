@@ -1,8 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { InnerLayout } from "../../styles/layouts";
 
-function Imcomes() {
-  return <div>Imcomes</div>;
+function Incomes() {
+  return (
+    <IncomesStyled>
+      <InnerLayout>
+        <h1>Incomes</h1>
+      </InnerLayout>
+    </IncomesStyled>
+  );
 }
-const ImcomesStyled = styled.div``;
-export default Imcomes;
+const IncomesStyled = styled.div``;
+export default Incomes;
