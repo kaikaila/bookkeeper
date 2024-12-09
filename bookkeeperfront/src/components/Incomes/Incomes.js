@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { InnerLayout } from "../../styles/layouts";
 import { useGlobalContext } from "../../context/globalContext";
 import Form from "../Form/Form";
+import IncomeItem from "../IncomeItem/IncomeItem";
 
 function Incomes() {
   const { addIncome, incomes, getIncomes, deleteIncome, totalIncome } =

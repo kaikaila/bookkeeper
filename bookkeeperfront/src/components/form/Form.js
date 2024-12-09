@@ -43,7 +43,7 @@ function Form() {
           type="text"
           value={title}
           name={"title"}
-          placeholder="Salary"
+          placeholder="Income Title"
           onChange={handleInput("title")}
         />
       </div>
@@ -52,14 +52,15 @@ function Form() {
           type="text"
           value={amount}
           name={"amount"}
-          placeholder="999"
+          placeholder="Income Amount"
           onChange={handleInput("amount")}
         />
       </div>
       <div className="input-control">
         <DatePicker
           id="date"
-          placeholder="Enter A Date"
+          // placeholderText
+          placeholderText="Enter A Date"
           selected={date}
           // attention: MM in capital letters
           dateFormat="dd/MM/yyyy"
@@ -102,7 +103,14 @@ function Form() {
         ></textarea>
       </div>
       <div className="submit-btn">
-        <button>Add Income</button>
+        <Button
+          name={"Add Income"}
+          icon={plus}
+          bPad={".8rem 1.6rem"}
+          bRad={"30px"}
+          bg={"var(--color-accent"}
+          color={"#fff"}
+        />
       </div>
     </FormStyled>
   );
