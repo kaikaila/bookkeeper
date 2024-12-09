@@ -19,10 +19,9 @@ export const GlobalProvider = ({ children }) => {
 
   return (
     <GlobalContext.Provider
-      value={
-        addIncome
-        // addIncome,
-      }
+      value={{
+        addIncome,
+      }}
     >
       {children}
     </GlobalContext.Provider>

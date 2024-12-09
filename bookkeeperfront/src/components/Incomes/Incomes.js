@@ -5,15 +5,13 @@ import { useGlobalContext } from "../../context/globalContext";
 import Form from "../Form/Form";
 
 function Incomes() {
-  const { addIncome } = useGlobalContext();
   return (
     <IncomesStyled>
       <InnerLayout>
         <h1>Incomes</h1>
         <div className="income-content">
           <div className="form-container">
-            {" "}
-            <Form />{" "}
+            <Form />
           </div>
           <div className="incomes"></div>
         </div>
