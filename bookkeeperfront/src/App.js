@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import styled from "styled-components";
+import { useGlobalContext } from "./context/globalContext";
 
 import { MainLayout } from "./styles/layouts";
 import Orb from "./components/button/Orb/Orb";
@@ -10,6 +11,9 @@ import Expenses from "./components/Expenses/Expenses";
 import bg from "./img/background.jpg";
 
 function App() {
+  const global = useGlobalContext();
+  console.log(global);
+
   // useMemo 以避免每次切换tab导致Orb重启
   const orbMemo = useMemo(() => {
     return <Orb />;
