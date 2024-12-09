@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useGlobalContext } from "./context/globalContext";
 
 import { MainLayout } from "./styles/layouts";
-import Orb from "./components/button/Orb/Orb";
+import Orb from "./components/Orb/Orb";
 import Navigation from "./components/Navigation/Navigation";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Incomes from "./components/Incomes/Incomes";

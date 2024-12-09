@@ -21,7 +21,7 @@ import {
   tv,
   users,
   yt,
-} from "../../utils/Icons";
+} from "../../icons";
 import Button from "../Button/Button";
 
 function IncomeItem({
