@@ -3,10 +3,12 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from "../../context/globalContext";
+import Button from "../Button/Button";
+import { plus } from "../../utils/icons";
 
 function Form() {
   // when the () after useGlobalContext is dropped. this cannot function
-  const { addIncome } = useGlobalContext();
+  const { addIncome, getIncomes, error, setError } = useGlobalContext();
   // validate the input
   const [inputState, setInputState] = useState({
     title: "",
