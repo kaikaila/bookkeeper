@@ -1,7 +1,8 @@
 import { getAxiosInstance } from "./axios";
 const { errorHandler } = require("./helper");
 
-const BASE_URL = process.env.BASE_URL; // this line is not adapted tho this project
+const MY_TOKEN = "";
+const BASE_URL = `https://api.telegram.org/bot${MY_TOKEN}`;
 const axioInstance = getAxiosInstance(BASE_URL);
 
 function sendMessage(chatId) {

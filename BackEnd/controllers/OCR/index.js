@@ -10,7 +10,8 @@ async function handler(req, method) {
       const testUrl = "https://i.ibb.co/N7jWr1B/IMG-7686.png";
       if (path === "/test") {
         const data = await processThereceipt(testUrl);
-        return "Success";
+        // return "Success";
+        return JSON.stringify(data);
       }
       return "Hello Get";
     }
