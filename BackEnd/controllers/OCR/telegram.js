@@ -1,5 +1,5 @@
 import { getAxiosInstance } from "./axios";
-const { errorHandler } = require("./helper");
+const { errorHandler } = require("./errorHanler");
 
 const MY_TOKEN = "";
 const BASE_URL = `https://api.telegram.org/bot${MY_TOKEN}`;

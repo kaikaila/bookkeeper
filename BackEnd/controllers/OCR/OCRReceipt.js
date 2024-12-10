@@ -1,5 +1,5 @@
 const { getAxiosInstance } = require("./axios");
-const { errorHandler } = require("./helpers");
+const { errorHandler } = require("./errorHanler");
 
 const AxiosInstance = getAxiosInstance(
   "https://api.veryfi.com/api/v8/partner/documents",
@@ -11,7 +11,7 @@ const AxiosInstance = getAxiosInstance(
   }
 );
 
-async function processTheReceipt(fileURL) {
+async function processTheReceipt(fileUrl) {
   return new Promise((resolve, reject) => {
     AxiosInstance.post("documents", { file_url: fileUrl })
       .then((response) => {

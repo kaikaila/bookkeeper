@@ -1,38 +1,52 @@
-//通过require关键字，引入外部模块，库、文件
+// 引入外部模块和文件
 const express = require("express");
 const cors = require("cors");
-const app = express();
-const { db } = require("./db/db"); // 引入database from mongoDB
-const { routes } = require("./routes/transactions");
-//The readdirSync function from the fs (File System) module in Node.js is used to synchronously read the contents of a directory
 const { readdirSync } = require("fs");
+const { db } = require("./db/db"); // 引入 MongoDB 配置
+const { processTheReceipt } = require("./controllers/OCR/OCRReceipt"); // 引入 OCRReceipt 模块
+require("dotenv").config(); // 加载 .env 文件中的环境变量
 
-//.config() 是 dotenv 的一个方法，调用后会解析 .env 文件的内容，并把其中的键值对加载到 process.env 中。
-require("dotenv").config();
+// 初始化 Express 应用
+const app = express();
 const PORT = process.env.PORT;
 
 // middleware
-// express是用来快速创建服务器端应用
-// 解析请求体中的 JSON 数据，将其转换为 JavaScript 对象并赋值给 req.body。
-app.use(express.json());
-// 启用跨域资源共享（CORS），允许前端跨域访问后端资源，解决跨域请求限制问题。
-app.use(cors());
+app.use(express.json()); // 解析请求体中的 JSON 数据
+app.use(cors()); // 启用跨域资源共享（CORS）
 
-//routes
-//dynamically importing route handlers from the ./routes directory and registering them with an Express app.
-// require: Dynamically imports the route module from the ./routes directory.
-// app.use: Registers the route module under the path /api/v1.
+// 动态引入路由模块
 readdirSync("./routes").map((route) =>
   app.use("/api/v1", require("./routes/" + route))
 );
-// from the homepage
-// 写好这一步之后，在postman发一条 localhost：3010就能收到回复Hello, World
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
 
+// Veryfi API 路由
+app.post("/api/v1/parse-receipt", async (req, res) => {
+  try {
+    const { imageUrl } = req.body; // 获取请求中的图片 URL
+
+    if (!imageUrl) {
+      return res.status(400).json({ error: "Image URL is required" });
+    }
+
+    // 调用 processTheReceipt 解析收据
+    const parsedData = await processTheReceipt(imageUrl);
+
+    // 返回解析结果
+    res.status(200).json(parsedData);
+  } catch (error) {
+    console.error(error.message || error);
+    res.status(500).json({ error: "Failed to parse receipt" });
+  }
+});
+
+// 测试路由
+app.get("/", (req, res) => {
+  res.send("Hello, World");
+});
+
+// 启动服务器
 const server = () => {
-  db();
+  db(); // 连接数据库
   app.listen(PORT, () => {
     console.log("You are listening to port:", PORT);
   });
