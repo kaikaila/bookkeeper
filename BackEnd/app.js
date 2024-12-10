@@ -37,7 +37,5 @@ const server = () => {
     console.log("You are listening to port:", PORT);
   });
 };
-//https://www.youtube.com/watch?v=i0JesTevAcA
-//教程看到12:08
 
 server();
