@@ -38,7 +38,7 @@ function Form() {
   return (
     <FormStyled onSubmit={handleSubmit}>
       <div className="input-control">
-        {/* emphasized：name和onchange内填写的字段名必须一致 */}
+        {/* Title Input */}
         <input
           type="text"
           value={title}
@@ -47,8 +47,10 @@ function Form() {
           onChange={handleInput("title")}
         />
       </div>
+
       <div className="amount_and_select">
-        <div className="input-control" id="amount">
+        {/* Amount Input */}
+        <div className="input-control amount">
           <input
             type="text"
             value={amount}
@@ -57,7 +59,8 @@ function Form() {
             onChange={handleInput("amount")}
           />
         </div>
-        <div className="selects input-control">
+        {/* Category Dropdown */}
+        <div className="input-control category">
           <select
             required
             value={category}
@@ -70,22 +73,22 @@ function Form() {
             </option>
             <option value="salary">Salary</option>
             <option value="freelancing">Freelancing</option>
-            <option value="investments">Investiments</option>
+            <option value="investments">Investments</option>
             <option value="stocks">Stocks</option>
             <option value="bitcoin">Bitcoin</option>
             <option value="bank">Bank Transfer</option>
-            <option value="youtube">Youtube</option>
+            <option value="youtube">YouTube</option>
             <option value="other">Other</option>
           </select>
         </div>
       </div>
-      <div className="input-control" id="date">
+
+      <div className="input-control">
+        {/* Date Input */}
         <DatePicker
           id="date"
-          // placeholderText
           placeholderText="Enter A Date"
           selected={date}
-          // attention: MM in capital letters
           dateFormat="dd/MM/yyyy"
           onChange={(date) => {
             setInputState({ ...inputState, date: date });
@@ -94,6 +97,7 @@ function Form() {
       </div>
 
       <div className="input-control">
+        {/* Description Textarea */}
         <textarea
           name="description"
           value={description}
@@ -104,7 +108,9 @@ function Form() {
           onChange={handleInput("description")}
         ></textarea>
       </div>
+
       <div className="submit-btn">
+        {/* Submit Button */}
         <Button
           name={"Add Income"}
           icon={plus}
@@ -120,8 +126,8 @@ function Form() {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  gap: 1.5rem; /* 增加各行间距 */
+  width: 100%;
 
   input,
   textarea,
@@ -129,52 +135,51 @@ const FormStyled = styled.form`
     width: 100%;
     font-family: inherit;
     font-size: inherit;
-    outline: none;
-    border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1rem;
     border-radius: 5px;
-    border: 2px solid #fff;
-    background: transparent;
-    resize: none;
+    border: 2px solid #e0e0e0;
+    background-color: #f9f9f9;
+    outline: none;
+    color: #333;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-    color: rgba(34, 34, 96, 0.9);
     &::placeholder {
-      color: rgba(34, 34, 96, 0.4);
+      color: #999;
     }
   }
 
   .input-control {
-    input {
-      width: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .amount_and_select {
     display: flex;
     justify-content: space-between;
-  }
+    gap: 1rem;
 
-  #amount {
-    display: inline-flex;
-    margin-right: 1rem;
-  }
+    .amount,
+    .category {
+      width: 48%; /* 确保两部分均分同一行 */
+    }
 
-  .selects {
-    display: inline-flex;
-    justify-content: flex-end;
+    input {
+      width: 100%;
+    }
+
     select {
-      color: rgba(34, 34, 96, 0.4);
-      &:focus,
-      &:active {
-        color: rgba(34, 34, 96, 1);
-      }
+      width: 100%;
     }
   }
+
   .submit-btn {
+    display: flex;
+    justify-content: center;
+
     button {
       box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
       &:hover {
-        background: var(--color-green) !important;
+        background-color: var(--color-green);
       }
     }
   }
