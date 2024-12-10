@@ -9,7 +9,7 @@ function getAxiosInstance(BASE_URL, headers = {}) {
         headers,
       });
     },
-    postMessage(method, data) {
+    post(method, data) {
       return axios({
         method: "post",
         baseURL: BASE_URL,

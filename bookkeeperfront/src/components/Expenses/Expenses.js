@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { InnerLayout } from "../../styles/layouts";
 import { useGlobalContext } from "../../context/globalContext";
+import ReceiptURLInput from "../ReceiptURLInput/ReceiptURLInput";
 import ExpenseForm from "../Expenses/ExpenseForm";
 import IncomeItem from "../IncomeItem/IncomeItem";
 
@@ -13,6 +14,32 @@ function Expenses() {
     getExpenses();
   }, []);
 
+  // parse the json from veryFi and fill them into the form
+  const parseReceipt = async (imageUrl) => {
+    try {
+      const response = await fetch("/api/v1/parse-receipt", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ imageUrl }),
+      });
+      const data = await response.json();
+
+      // 将解析的数据作为新的支出添加
+      addIncome({
+        title: data.vendor?.name || "Unknown Vendor",
+        amount: data.total || 0,
+        date: data.bill_date || new Date(),
+        category: data.items?.[0]?.name || "Misc",
+        description: "Parsed from receipt",
+        type: "expense",
+      });
+    } catch (error) {
+      console.error("Error parsing receipt:", error);
+    }
+  };
+
   return (
     <ExpensesStyled>
       <InnerLayout>
@@ -23,6 +50,7 @@ function Expenses() {
         <div className="income-content">
           <div className="form-container">
             <ExpenseForm />
+            <ReceiptURLInput onParseReceipt={parseReceipt} />
           </div>
           <div className="incomes">
             {expenses.map((income) => {
