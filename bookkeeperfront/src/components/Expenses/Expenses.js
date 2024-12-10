@@ -46,10 +46,13 @@ function Expenses() {
   return (
     <ExpensesStyled>
       <InnerLayout>
-        <h1>Expenses</h1>
-        <h2 className="total-income">
-          Total Expense: <span>${totalExpenses()}</span>
-        </h2>
+        <div className="first-line">
+          <h1>Expenses</h1>
+          <h2 className="total-income">
+            Total: <span>${totalExpenses()}</span>
+          </h2>
+        </div>
+
         <div className="income-content">
           <div className="form-container">
             <ReceiptURLInput onParseReceipt={parseReceipt} />
@@ -85,20 +88,26 @@ const ExpensesStyled = styled.div`
   display: flex;
   overflow: auto;
 
-  .total-income {
+  .first-line {
     display: flex;
+    align-contents: center;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+  }
+
+  h1 {
+    display: inline;
+  }
+
+  .total-income {
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    background: #fcf6f9;
-    border: 2px solid #ffffff;
-    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-    border-radius: 20px;
-    padding: 1rem;
-    margin: 1rem 0;
-    font-size: 1.5rem;
+    //
+    font-size: 2em;
     gap: 0.5rem;
     span {
-      font-size: 1.8rem;
+      font-size: 2.4rem;
       font-weight: 800;
       color: var(--color-green);
     }
