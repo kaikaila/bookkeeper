@@ -67,7 +67,6 @@ const IncomesStyled = styled.div`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    //
     font-size: 2em;
     gap: 0.5rem;
     span {

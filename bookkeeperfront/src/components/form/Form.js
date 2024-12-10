@@ -47,16 +47,39 @@ function Form() {
           onChange={handleInput("title")}
         />
       </div>
-      <div className="input-control">
-        <input
-          type="text"
-          value={amount}
-          name={"amount"}
-          placeholder="Income Amount"
-          onChange={handleInput("amount")}
-        />
+      <div className="amount_and_select">
+        <div className="input-control" id="amount">
+          <input
+            type="text"
+            value={amount}
+            name={"amount"}
+            placeholder="Income Amount"
+            onChange={handleInput("amount")}
+          />
+        </div>
+        <div className="selects input-control">
+          <select
+            required
+            value={category}
+            name="category"
+            id="category"
+            onChange={handleInput("category")}
+          >
+            <option value="" disabled>
+              Category
+            </option>
+            <option value="salary">Salary</option>
+            <option value="freelancing">Freelancing</option>
+            <option value="investments">Investiments</option>
+            <option value="stocks">Stocks</option>
+            <option value="bitcoin">Bitcoin</option>
+            <option value="bank">Bank Transfer</option>
+            <option value="youtube">Youtube</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
       </div>
-      <div className="input-control">
+      <div className="input-control" id="date">
         <DatePicker
           id="date"
           // placeholderText
@@ -68,27 +91,6 @@ function Form() {
             setInputState({ ...inputState, date: date });
           }}
         />
-      </div>
-      <div className="selects input-control">
-        <select
-          required
-          value={category}
-          name="category"
-          id="category"
-          onChange={handleInput("category")}
-        >
-          <option value="" disabled>
-            Select Option
-          </option>
-          <option value="salary">Salary</option>
-          <option value="freelancing">Freelancing</option>
-          <option value="investments">Investiments</option>
-          <option value="stocks">Stocks</option>
-          <option value="bitcoin">Bitcoin</option>
-          <option value="bank">Bank Transfer</option>
-          <option value="youtube">Youtube</option>
-          <option value="other">Other</option>
-        </select>
       </div>
 
       <div className="input-control">
@@ -118,10 +120,13 @@ function Form() {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
+
   input,
   textarea,
   select {
+    width: 100%;
     font-family: inherit;
     font-size: inherit;
     outline: none;
@@ -137,14 +142,25 @@ const FormStyled = styled.form`
       color: rgba(34, 34, 96, 0.4);
     }
   }
+
   .input-control {
     input {
       width: 100%;
     }
   }
 
-  .selects {
+  .amount_and_select {
     display: flex;
+    justify-content: space-between;
+  }
+
+  #amount {
+    display: inline-flex;
+    margin-right: 1rem;
+  }
+
+  .selects {
+    display: inline-flex;
     justify-content: flex-end;
     select {
       color: rgba(34, 34, 96, 0.4);
@@ -154,7 +170,6 @@ const FormStyled = styled.form`
       }
     }
   }
-
   .submit-btn {
     button {
       box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
