@@ -95,10 +95,10 @@ function Form() {
         <textarea
           name="description"
           value={description}
-          placeholder="Add A Reference"
+          placeholder="Add A Description"
           id="description"
           cols="30"
-          rows="4"
+          rows="2"
           onChange={handleInput("description")}
         ></textarea>
       </div>
@@ -118,7 +118,7 @@ function Form() {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   input,
   textarea,
   select {

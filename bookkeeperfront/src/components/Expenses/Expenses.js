@@ -52,8 +52,8 @@ function Expenses() {
         </h2>
         <div className="income-content">
           <div className="form-container">
-            <ExpenseForm />
             <ReceiptURLInput onParseReceipt={parseReceipt} />
+            <ExpenseForm />
           </div>
           <div className="incomes">
             {expenses.map((income) => {
@@ -84,6 +84,7 @@ function Expenses() {
 const ExpensesStyled = styled.div`
   display: flex;
   overflow: auto;
+
   .total-income {
     display: flex;
     justify-content: center;
@@ -94,14 +95,15 @@ const ExpensesStyled = styled.div`
     border-radius: 20px;
     padding: 1rem;
     margin: 1rem 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     gap: 0.5rem;
     span {
-      font-size: 2.5rem;
+      font-size: 1.8rem;
       font-weight: 800;
       color: var(--color-green);
     }
   }
+
   .income-content {
     display: flex;
     gap: 2rem;
