@@ -43,11 +43,8 @@ function ReceiptURLInput({ onParseReceipt }) {
 const ReceiptURLInputStyled = styled.div`
   border: 2px solid #fff;
   background: transparent;
-  // this is the same as incomeItems
-  // background: #fcf6f9;
-  // border: 2px solid #ffffff;
   box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 1rem;
   margin-bottom: 1rem;
 
