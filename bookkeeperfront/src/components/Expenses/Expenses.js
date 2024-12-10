@@ -7,7 +7,7 @@ import ExpenseForm from "../Expenses/ExpenseForm";
 import IncomeItem from "../IncomeItem/IncomeItem";
 
 function Expenses() {
-  const { addIncome, expenses, getExpenses, deleteExpense, totalExpenses } =
+  const { addExpense, expenses, getExpenses, deleteExpense, totalExpenses } =
     useGlobalContext();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function Expenses() {
       const data = await response.json();
 
       // 将解析的数据作为新的支出添加
-      addIncome({
+      addExpense({
         title: data.vendor?.name || "Unknown Vendor",
         amount: data.total || 0,
         date: data.bill_date || new Date(),
