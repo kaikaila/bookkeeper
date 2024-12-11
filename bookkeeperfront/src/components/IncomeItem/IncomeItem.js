@@ -89,24 +89,12 @@ function IncomeItem({
         {type === "expense" ? expenseCatIcon() : categoryIcon()}
       </div>
       <div className="content">
-        <h5>{title}</h5>
-        <div className="inner-content">
-          <div className="text">
-            <p>
-              {dollar} {amount}
-            </p>
-            <p>
-              {calender} {dateFormat(date)}
-            </p>
-            <p>
-              {comment}
-              {description}
-            </p>
-          </div>
+        <div className="first-line">
+          <h5>{title}</h5>
           <div className="btn-con">
             <Button
               icon={trash}
-              bPad={"1rem"}
+              bPad={"0.5rem"}
               bRad={"50%"}
               bg={"var(--primary-color"}
               color={"#fff"}
@@ -116,7 +104,21 @@ function IncomeItem({
             />
           </div>
         </div>
+        {/* <div className="detail"> */}
+        <div className="second-line">
+          <p>
+            {dollar} {amount}
+          </p>
+          <p>
+            {calender} {dateFormat(date)}
+          </p>
+        </div>
+        <p id="comment">
+          {comment}
+          {description}
+        </p>
       </div>
+      {/* </div> */}
     </IncomeItemStyled>
   );
 }
@@ -133,10 +135,11 @@ const IncomeItemStyled = styled.div`
   gap: 1rem;
   width: 100%;
   color: #222260;
+
   .icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
     background: #f5f5f5;
     display: flex;
     align-items: center;
@@ -147,10 +150,16 @@ const IncomeItemStyled = styled.div`
     }
   }
 
-  .content {
+  // .detail {
+  //   flex: 1;
+  //   display: flex;
+  //   // flex-direction: column;
+  // }
+
+  .first-line {
     flex: 1;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     gap: 0.2rem;
     h5 {
       font-size: 1.3rem;
@@ -169,22 +178,23 @@ const IncomeItemStyled = styled.div`
       }
     }
 
-    .inner-content {
+    .second-line {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .text {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        p {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: var(--primary-color);
-          opacity: 0.8;
-        }
-      }
+      // .text {
+      //   display: flex;
+      //   align-items: center;
+      //   gap: 1.5rem;
+      //}
+    }
+
+    p {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-color);
+      opacity: 0.8;
     }
   }
 `;
