@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
 const BASE_URL = "http://localhost:3010/api/v1/";
+const apiBaseUrl = "https://bookkeeper-backend.vercel.app/api/v1/";
 
 const GlobalContext = createContext();
 
@@ -12,20 +13,20 @@ export const GlobalProvider = ({ children }) => {
   // income operations
   const addIncome = async (income) => {
     const response = await axios
-      .post(`${BASE_URL}add-income`, income)
+      .post(`${apiBaseUrl}add-income`, income)
       .catch((err) => {
         setError(err.response.data.message);
       });
   };
 
   const getIncomes = async () => {
-    const response = await axios.get(`${BASE_URL}get-incomes`);
+    const response = await axios.get(`${apiBaseUrl}get-incomes`);
     setIncomes(response.data);
     console.log(response.data);
   };
 
   const deleteIncome = async (id) => {
-    const res = await axios.delete(`${BASE_URL}delete-income/${id}`);
+    const res = await axios.delete(`${apiBaseUrl}delete-income/${id}`);
     getIncomes();
   };
 
@@ -41,7 +42,7 @@ export const GlobalProvider = ({ children }) => {
   //expense operations
   const addExpense = async (income) => {
     const response = await axios
-      .post(`${BASE_URL}add-expense`, income)
+      .post(`${apiBaseUrl}add-expense`, income)
       .catch((err) => {
         setError(err.response.data.message);
       });
@@ -49,13 +50,13 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const getExpenses = async () => {
-    const response = await axios.get(`${BASE_URL}get-expenses`);
+    const response = await axios.get(`${apiBaseUrl}get-expenses`);
     setExpenses(response.data);
     console.log(response.data);
   };
 
   const deleteExpense = async (id) => {
-    const res = await axios.delete(`${BASE_URL}delete-expense/${id}`);
+    const res = await axios.delete(`${apiBaseUrl}delete-expense/${id}`);
     getExpenses();
   };
 
