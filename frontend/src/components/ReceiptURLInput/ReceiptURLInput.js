@@ -9,7 +9,7 @@ function ReceiptURLInput({ onParseReceipt }) {
     e.preventDefault();
     if (imageUrl.trim()) {
       onParseReceipt(imageUrl); // 调用父组件传入的解析函数
-      setImageUrl(""); // 清空输入框
+      setImageUrl(""); // clear the input
     }
   };
 

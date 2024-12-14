@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
 const BASE_URL = "http://localhost:3010/api/v1/";
-const apiBaseUrl = "https://bookkeeper-backend.vercel.app/api/v1/";
+const apiBaseUrl =
+  "https://lyk-bookkeeper-backend-30c2c5063a2c.herokuapp.com/api/v1/"; //"https://bookkeeper-backend.vercel.app/api/v1/";
 
 const GlobalContext = createContext();
 
@@ -86,6 +87,7 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
+        apiBaseUrl,
         addIncome,
         getIncomes,
         incomes,

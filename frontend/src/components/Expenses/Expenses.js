@@ -7,8 +7,14 @@ import ExpenseForm from "../Expenses/ExpenseForm";
 import IncomeItem from "../IncomeItem/IncomeItem";
 
 function Expenses() {
-  const { addExpense, expenses, getExpenses, deleteExpense, totalExpenses } =
-    useGlobalContext();
+  const {
+    apiBaseUrl,
+    addExpense,
+    expenses,
+    getExpenses,
+    deleteExpense,
+    totalExpenses,
+  } = useGlobalContext();
 
   useEffect(() => {
     getExpenses();
@@ -17,16 +23,14 @@ function Expenses() {
   // parse the json from veryFi and fill them into the form
   const parseReceipt = async (imageUrl) => {
     try {
-      const response = await fetch(
-        "http://localhost:3010/api/v1/parse-receipt",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ imageUrl }),
-        }
-      );
+      console.log(apiBaseUrl);
+      const response = await fetch(`${apiBaseUrl}parse-receipt`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ imageUrl }),
+      });
       const data = await response.json();
 
       // 将解析的数据作为新的支出添加
